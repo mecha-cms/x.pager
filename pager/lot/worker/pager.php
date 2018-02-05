@@ -1,0 +1,1 @@
+<nav class="pager"><?php echo $pager; ?></nav>

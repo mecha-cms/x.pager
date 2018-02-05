@@ -1,0 +1,30 @@
+---
+title: Pager
+description: Custom page navigation.
+author: Taufik Nurrohman
+type: Markdown
+version: 0.0.9
+
+dependency:
+  extension:
+    - asset
+    - page
+...
+
+To enable the numbered page navigation style, open your `pages.php` file then search for a line of code that look like this:
+
+~~~ .php
+<nav><?php echo $pager; ?></nav>
+~~~
+
+~~~ .php
+<?php echo Shield::get('pager'); ?>
+~~~
+
+Replace with this:
+
+~~~ .php
+<?php echo Shield::get('pager/step'); ?>
+~~~
+
+<!-- block:donate -->
