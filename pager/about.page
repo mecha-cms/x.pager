@@ -13,18 +13,18 @@ dependency:
 
 To enable the numbered page navigation style, open your `pages.php` file then search for a line of code that look like this:
 
-~~~ .php
+~~~ .html
 <nav><?php echo $pager; ?></nav>
 ~~~
 
 ~~~ .php
-<?php echo Shield::get('pager'); ?>
+<?php Shield::get('pager'); ?>
 ~~~
 
 Replace with this:
 
 ~~~ .php
-<?php echo Shield::get('pager/step'); ?>
+<?php Shield::get('pager/step'); ?>
 ~~~
 
 <!-- block:donate -->
