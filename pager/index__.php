@@ -1,7 +1,6 @@
 <?php
 
 function fn_pager_path($path, $id) {
-    global $site;
     if (is_string($id) && ($id === 'pager' || strpos($id, 'pager/') === 0)) {
         return File::exist(__DIR__ . DS . 'lot' . DS . 'worker' . DS . $id . '.php', $path);
     }

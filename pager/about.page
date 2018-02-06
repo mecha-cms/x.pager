@@ -3,7 +3,7 @@ title: Pager
 description: Custom page navigation.
 author: Taufik Nurrohman
 type: Markdown
-version: 0.0.9
+version: 0.0.10
 
 dependency:
   extension:
@@ -11,7 +11,7 @@ dependency:
     - page
 ...
 
-To enable the numbered page navigation style, open your `pages.php` file then search for a line of code that look like this:
+To enable the numbered page navigation style, open your `pages.php` file then search for a line of code that look like this or this:
 
 ~~~ .html
 <nav><?php echo $pager; ?></nav>
