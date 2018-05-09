@@ -3,7 +3,7 @@ title: Pager
 description: Custom page navigation.
 author: Taufik Nurrohman
 type: Markdown
-version: 0.0.10
+version: 1.0.0
 
 dependency:
   extension:

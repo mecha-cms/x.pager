@@ -9,12 +9,12 @@ $_range = $_state['range'];
 $_page = Lot::get('page');
 if ($_page && isset($_page->path)) {
     $_o = "";
-    $_current = (int) $site->step ?: 1;
+    $_current = (int) $url->i ?: 1;
     $_count = count(glob(Path::F($_page->path) . DS . '*.page', GLOB_NOSORT));
     $_c = $_page->chunk($site->chunk); // Current page chunk value…
     $_d = (int) floor($_range / 2);
     $_u = $_page->url . '/';
-    $_q = HTTP::query(); // Include current URL query(es)…
+    $_q = $url->query('&amp;'); // Include current URL query(es)…
     $_chunk = (int) ceil($_count / $_c);
     $_previous = $_current > 1 ? $_current - 1 : false;
     $_next = $_current < $_chunk ? $_current + 1 : false;

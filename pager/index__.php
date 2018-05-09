@@ -1,12 +1,7 @@
 <?php
 
-function fn_pager_path($path, $id) {
-    if (is_string($id) && ($id === 'pager' || strpos($id, 'pager/') === 0)) {
-        return File::exist(__DIR__ . DS . 'lot' . DS . 'worker' . DS . $id . '.php', $path);
-    }
-    return $path;
+foreach (g(__DIR__ . DS . 'lot' . DS . 'worker' . DS . 'pager', 'php') as $v) {
+    Shield::set('pager/' . Path::N($v), $v);
 }
-
-Hook::set('shield.get.path', 'fn_pager_path');
 
 Asset::set(__DIR__ . DS . 'lot' . DS . 'asset' . DS . 'css' . DS . 'pager.min.css');
