@@ -11,7 +11,7 @@ dependency:
     - page
 ...
 
-To enable the numbered page navigation style, open your `pages.php` file then search for a line of code that look like this or this:
+To enable the numbered page navigation style, open your `pages.php` file then find the code that looks like one of the examples below:
 
 ~~~ .html
 <nav><?php echo $pager; ?></nav>
