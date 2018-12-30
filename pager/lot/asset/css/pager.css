@@ -1,9 +1,10 @@
 /* @pager */
 .pager-step {
   display:block;
-  line-height:1.75em;
+  height:calc(var(--h-text, 1.5em) * 1.25);
+  line-height:calc(var(--h-text, 1.5em) * 1.25);
 }
-.pager-step:after {
+.pager-step::after {
   content:"";
   display:table;
   clear:both;
@@ -11,26 +12,38 @@
 
 /* @anchor */
 .pager-step a,
-.pager-step .a,
-.pager-step .s {
+.pager-step b,
+.pager-step span {
   display:inline-block;
-  vertical-align:middle;
-  background:#000;
-  color:#fff;
-  padding:0 .5em;
+  vertical-align:baseline;
+  padding:0 calc(var(--h-text, 1.5em) - var(--z, 16px));
   text-decoration:none;
 }
 .pager-step a,
 .pager-step a:focus,
 .pager-step a:hover,
 .pager-step a:active {
-  background:#00a;
-  color:white;
+  background:var(--color-a, #00f);
+  color:var(--color--inverse, #fff);
   cursor:pointer;
 }
 .pager-step a:focus,
-.pager-step a:active {background:#a00}
-.pager-step .a {cursor:not-allowed}
+.pager-step a:active {background:var(--color-a--inverse, #f00)}
+.pager-step b {
+  background:var(--color, #000);
+  color:var(--color--inverse, #fff);
+  font-weight:normal;
+  cursor:not-allowed;
+}
+
+/* @section */
+.pager-step > span {
+  background:none;
+  padding:0;
+}
 
 /* @separator */
-.pager-step .s {background:none}
+.pager-step > span span {
+  background:none;
+  color:inherit;
+}

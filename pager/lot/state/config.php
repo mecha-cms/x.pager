@@ -3,7 +3,7 @@
 return [
     'step' => [
         'previous' => true,
-        'range' => 5, // Must be odd number!
+        'kin' => 2,
         'next' => true
     ]
 ];

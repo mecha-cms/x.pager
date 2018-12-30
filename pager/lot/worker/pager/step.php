@@ -1,86 +1,72 @@
-<nav class="pager pager-step"><?php
+<nav class="pager pager-step">
+<?php
 
-$_state = Extend::state('pager', [
-    'step' => [
-        'range' => 5
-    ]
-])['step'];
-$_range = $_state['range'];
+$_state = Extend::state('pager')['step'] ?? [];
 $_page = Lot::get('page');
-if ($_page && isset($_page->path)) {
-    $_o = "";
-    $_current = (int) $url->i ?: 1;
-    $_count = count(glob(Path::F($_page->path) . DS . '*.page', GLOB_NOSORT));
-    $_c = $_page->chunk($site->chunk); // Current page chunk value…
-    $_d = (int) floor($_range / 2);
-    $_u = $_page->url . '/';
-    $_q = $url->query('&amp;'); // Include current URL query(es)…
-    $_chunk = (int) ceil($_count / $_c);
-    $_previous = $_current > 1 ? $_current - 1 : false;
-    $_next = $_current < $_chunk ? $_current + 1 : false;
-    if ($_chunk > 1) {
-        if (!empty($_state['previous'])) {
-            $_o .= '<span class="pager-step-previous">';
-            $_o .= $_previous ? '<a class="a-previous" href="' . $_u . $_previous . $_q . '" title="' . $language->previous . '" rel="prev">' . $language->previous . '</a>' : '<span class="a a-previous">' . $language->previous . '</span>';
-            $_o .= '</span> ';
-        }
-        if (!empty($_range)) {
-            $_o .= '<span class="pager-step-range">';
-            // Enable range view if `$_chunk` is greater than `$_range`
-            if ($_chunk > $_range) {
-                // Jump!
-                if ($_current >= $_range) {
-                    $_o .= '<a class="a-step a-step:1" href="' . $_u . '1' . $_q . '" title="' . $language->first . '" rel="prev">1</a>';
-                    $_o .= ' <span class="s">&#x2026;</span>';
-                }
-                // Closer to the first chunk
-                if ($_current < $_range) {
-                    for ($_i = 1; $_i <= $_range; ++$_i) {
-                        if ($_i > 1) {
-                            $_o .= ' ';
-                        }
-                        $_o .= $_i === $_current ? '<span class="a a-step a-step:' . $_i . '">' . $_i . '</span>' : '<a class="a-step a-step:' . $_i . '" href="' . $_u . $_i . $_q . '" title="' . $_i . '" rel="' . ($_i < $_current ? 'prev' : 'next') . '">' . $_i . '</a>';
-                    }
-                // Closer to the last chunk
-                } else if ($_current >= ($_chunk - $_d - 1)) {
-                    for ($_i = $_chunk - $_range + 1; $_i <= $_chunk; ++$_i) {
-                        if ($_i > 1) {
-                            $_o .= ' ';
-                        }
-                        $_o .= $_i === $_current ? '<span class="a a-step a-step:' . $_i . '">' . $_i . '</span>' : '<a class="a-step a-step:' . $_i . '" href="' . $_u . $_i . $_q . '" title="' . $_i . '" rel="' . ($_i < $_current ? 'prev' : 'next') . '">' . $_i . '</a>';
-                    }
-                // Somewhere in the middle of the chunk
-                } else if ($_current >= $_range && $_current < ($_chunk - $_d)) {
-                    for ($_i = $_current - $_d; $_i <= ($_current + $_d); ++$_i) {
-                        if ($_i > 1) {
-                            $_o .= ' ';
-                        }
-                        $_o .= $_i === $_current ? '<span class="a a-step a-step:' . $_i . '">' . $_i . '</span>' : '<a class="a-step a-step:' . $_i . '" href="' . $_u . $_i . $_q . '" title="' . $_i . '" rel="' . ($_i < $_current ? 'prev' : 'next') . '">' . $_i . '</a>';
-                    }
-                }
-                // Jump!
-                if ($_current < ($_chunk - $_range + $_d)) {
-                    $_o .= ' <span class="s">&#x2026;</span>';
-                    $_o .= ' <a class="a-step a-step:' . $_chunk . '" href="' . $_u . $_chunk . $_q . '" title="' . $language->last . '" rel="next">' . $_chunk . '</a>';
-                }
-            // Disable range view(s) if `$_chunk` is less than `$_range`
-            } else {
-                for ($_i = 1; $_i <= $_chunk; ++$_i) {
-                    if ($_i > 1) {
-                        $_o .= ' ';
-                    }
-                    $_o .= $_i === $_current ? '<span class="a a-step a-step:' . $_i . '">' . $_i . '</span>' : '<a class="a-step a-step:' . $_i . '" href="' . $_u . $_i . $_q . '" title="' . $_i . '" rel="' . ($_i < $_current ? 'prev' : 'next') . '">' . $_i . '</a>';
-                }
-            }
-            $_o .= '</span> ';
-        }
-        if (!empty($_state['next'])) {
-            $_o .= '<span class="pager-step-next">';
-            $_o .= $_next ? '<a class="a-next" href="' . $_u . $_next . $_q . '" title="' . $language->next . '" rel="next">' . $language->next . '</a>' : '<span class="a a-next">' . $language->next . '</span>';
-            $_o .= '</span>';
-        }
-    }
-    echo $_o;
-}
+$_count = $_page ? count(glob(Path::F($_page->path) . DS . '*.page', GLOB_NOSORT)) : 0;
 
-?></nav>
+echo call_user_func(function($current, $count, $chunk, $kin, $fn, $first, $previous, $next, $last) {
+    $begin = 1;
+    $end = (int) ceil($count / $chunk);
+    $out = "";
+    if ($end <= 1) {
+        return $out;
+    }
+    if ($current <= $kin + $kin) {
+        $min = $begin;
+        $max = min($begin + $kin + $kin, $end);
+    } else if ($current > $end - $kin - $kin) {
+        $min = $end - $kin - $kin;
+        $max = $end;
+    } else {
+        $min = $current - $kin;
+        $max = $current + $kin;
+    }
+    if ($previous) {
+        $out = '<span>';
+        if ($current === $begin) {
+            $out .= '<b title="' . $previous . '">' . $previous . '</b>';
+        } else {
+            $out .= '<a href="' . call_user_func($fn, $current - 1) . '" title="' . $previous . '" rel="prev">' . $previous . '</a>';
+        }
+        $out .= '</span> ';
+    }
+    if ($first && $last) {
+        $out .= '<span>';
+        if ($min > $begin) {
+            $out .= '<a href="' . call_user_func($fn, $begin) . '" title="' . $first . '" rel="prev">' . $begin . '</a>';
+            if ($min > $begin + 1) {
+                $out .= ' <span>&#x2026;</span>';
+            }
+        }
+        for ($i = $min; $i <= $max; ++$i) {
+            if ($current === $i) {
+                $out .= ' <b title="' . $i . '">' . $i . '</b>';
+            } else {
+                $out .= ' <a href="' . call_user_func($fn, $i) . '" title="' . $i . '" rel="' . ($current >= $i ? 'prev' : 'next') . '">' . $i . '</a>';
+            }
+        }
+        if ($max < $end) {
+            if ($max < $end - 1) {
+                $out .= ' <span>&#x2026;</span>';
+            }
+            $out .= ' <a href="' . call_user_func($fn, $end) . '" title="' . $last . '" rel="next">' . $end . '</a>';
+        }
+        $out .= '</span>';
+    }
+    if ($next) {
+        $out .= ' <span>';
+        if ($current === $end) {
+            $out .= '<b title="' . $next . '">' . $next . '</b>';
+        } else {
+            $out .= '<a href="' . call_user_func($fn, $current + 1) . '" title="' . $next . '" rel="next">' . $next . '</a>';
+        }
+        $out .= '</span>';
+    }
+    return $out;
+}, $url->i ?: 1, $_count, $_page->chunk ?: $state->chunk, $_state['kin'], function($i) use($state, $url) {
+    return $url . '/' . $state->path . ($i > 0 ? '/' . $i : "");
+}, $language->first, !empty($_state['previous']) ? $language->previous : false, !empty($_state['next']) ? $language->next : false, $language->last);
+
+?>
+</nav>
