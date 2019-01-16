@@ -64,8 +64,8 @@ echo call_user_func(function($current, $count, $chunk, $kin, $fn, $first, $previ
         $out .= '</span>';
     }
     return $out;
-}, $url->i ?: 1, $_count, $_page->chunk ?: $state->chunk, $_state['kin'], function($i) use($state, $url) {
-    return $url . '/' . $state->path . ($i > 0 ? '/' . $i : "");
+}, $url->i ?: 1, $_count, $config->chunk, $_state['kin'], function($i) use($url) {
+    return $url->clean . ($i > 0 ? '/' . $i : "");
 }, $language->first, !empty($_state['previous']) ? $language->previous : false, !empty($_state['next']) ? $language->next : false, $language->last);
 
 ?>
