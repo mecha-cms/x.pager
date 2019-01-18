@@ -1,9 +1,9 @@
+<?php if (!isset($page)) return; ?>
 <nav class="pager pager-step">
 <?php
 
 $_state = Extend::state('pager')['step'] ?? [];
-$_page = Lot::get('page');
-$_count = $_page ? count(glob(Path::F($_page->path) . DS . '*.page', GLOB_NOSORT)) : 0;
+$_count = count(glob(Path::F($page->path) . DS . '*.page', GLOB_NOSORT));
 
 echo call_user_func(function($current, $count, $chunk, $kin, $fn, $first, $previous, $next, $last) {
     $begin = 1;
@@ -64,8 +64,8 @@ echo call_user_func(function($current, $count, $chunk, $kin, $fn, $first, $previ
         $out .= '</span>';
     }
     return $out;
-}, $url->i ?: 1, $_count, $config->chunk, $_state['kin'], function($i) use($url) {
-    return $url->clean . ($i > 0 ? '/' . $i : "");
+}, $url->i ?: 1, $_count, $config->chunk, $_state['kin'], function($i) use($page) {
+    return $page->url . ($i > 0 ? '/' . $i : "");
 }, $language->first, !empty($_state['previous']) ? $language->previous : false, !empty($_state['next']) ? $language->next : false, $language->last);
 
 ?>
