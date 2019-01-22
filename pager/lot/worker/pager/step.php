@@ -1,9 +1,8 @@
-<?php if (!isset($page)) return; ?>
 <nav class="pager pager-step">
 <?php
 
 $_state = Extend::state('pager')['step'] ?? [];
-$_count = count(glob(Path::F($page->path) . DS . '*.page', GLOB_NOSORT));
+$_count = count($pages->lot);
 
 echo call_user_func(function($current, $count, $chunk, $kin, $fn, $first, $previous, $next, $last) {
     $begin = 1;

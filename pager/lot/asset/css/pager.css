@@ -1,35 +1,35 @@
 /* @pager */
-.pager-step {
+.pager {
   display:block;
   height:calc(var(--h-text, 1.5em) * 1.25);
   line-height:calc(var(--h-text, 1.5em) * 1.25);
 }
-.pager-step::after {
+.pager::after {
   content:"";
   display:table;
   clear:both;
 }
 
 /* @anchor */
-.pager-step a,
-.pager-step b,
-.pager-step span {
+.pager a,
+.pager b,
+.pager span {
   display:inline-block;
   vertical-align:baseline;
-  padding:0 calc(var(--h-text, 1.5em) - var(--z, 16px));
+  padding:0 calc(var(--h-text, 1.5em) - var(--z, 1em));
   text-decoration:none;
 }
-.pager-step a,
-.pager-step a:focus,
-.pager-step a:hover,
-.pager-step a:active {
+.pager a,
+.pager a:focus,
+.pager a:hover,
+.pager a:active {
   background:var(--color-a, #00f);
   color:var(--color--inverse, #fff);
   cursor:pointer;
 }
-.pager-step a:focus,
-.pager-step a:active {background:var(--color-a--inverse, #f00)}
-.pager-step b {
+.pager a:focus,
+.pager a:active {background:var(--color-a--inverse, #f00)}
+.pager b {
   background:var(--color, #000);
   color:var(--color--inverse, #fff);
   font-weight:normal;
@@ -37,13 +37,19 @@
 }
 
 /* @section */
-.pager-step > span {
+.pager > span {
   background:none;
   padding:0;
 }
 
 /* @separator */
-.pager-step > span span {
+.pager > span span {
   background:none;
   color:inherit;
 }
+
+/* @arrow */
+.pager-title > span:first-child b::before,
+.pager-title > span:first-child a::before {content:'\00AB\0020'}
+.pager-title > span:last-child b::after,
+.pager-title > span:last-child a::after {content:'\0020\00BB'}
