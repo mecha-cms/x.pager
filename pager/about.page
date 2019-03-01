@@ -7,8 +7,8 @@ version: 1.1.5
 
 dependency:
   extension:
-    - asset
-    - page
+  - asset
+  - page
 ...
 
 To enable the numbered page navigation style, open your `pages.php` file then find the code that looks like one of the examples below:
