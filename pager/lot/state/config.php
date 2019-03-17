@@ -2,8 +2,8 @@
 
 return [
     'step' => [
-        'previous' => true,
-        'kin' => 2,
-        'next' => true
+        'next' => true,
+        'prev' => true,
+        'peek' => 2,
     ]
 ];

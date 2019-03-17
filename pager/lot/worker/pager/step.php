@@ -4,29 +4,29 @@
 $_state = Extend::state('pager')['step'] ?? [];
 $_count = count($pages->lot);
 
-echo call_user_func(function($current, $count, $chunk, $kin, $fn, $first, $previous, $next, $last) {
+echo call_user_func(function($current, $count, $chunk, $peek, $fn, $first, $prev, $next, $last) {
     $begin = 1;
     $end = (int) ceil($count / $chunk);
     $out = "";
     if ($end <= 1) {
         return $out;
     }
-    if ($current <= $kin + $kin) {
+    if ($current <= $peek + $peek) {
         $min = $begin;
-        $max = min($begin + $kin + $kin, $end);
-    } else if ($current > $end - $kin - $kin) {
-        $min = $end - $kin - $kin;
+        $max = min($begin + $peek + $peek, $end);
+    } else if ($current > $end - $peek - $peek) {
+        $min = $end - $peek - $peek;
         $max = $end;
     } else {
-        $min = $current - $kin;
-        $max = $current + $kin;
+        $min = $current - $peek;
+        $max = $current + $peek;
     }
-    if ($previous) {
+    if ($prev) {
         $out = '<span>';
         if ($current === $begin) {
-            $out .= '<b title="' . $previous . '">' . $previous . '</b>';
+            $out .= '<b title="' . $prev . '">' . $prev . '</b>';
         } else {
-            $out .= '<a href="' . call_user_func($fn, $current - 1) . '" title="' . $previous . '" rel="prev">' . $previous . '</a>';
+            $out .= '<a href="' . call_user_func($fn, $current - 1) . '" title="' . $prev . '" rel="prev">' . $prev . '</a>';
         }
         $out .= '</span> ';
     }
@@ -63,9 +63,9 @@ echo call_user_func(function($current, $count, $chunk, $kin, $fn, $first, $previ
         $out .= '</span>';
     }
     return $out;
-}, $url->i ?: 1, $_count, $config->chunk, $_state['kin'], function($i) use($page) {
+}, $url->i ?? 1, $_count, $config->chunk, $_state['peek'], function($i) use($page) {
     return $page->url . ($i > 0 ? '/' . $i : "");
-}, $language->first, !empty($_state['previous']) ? $language->previous : false, !empty($_state['next']) ? $language->next : false, $language->last);
+}, $language->first, !empty($_state['prev']) ? $language->previous : false, !empty($_state['next']) ? $language->next : false, $language->last);
 
 ?>
 </nav>

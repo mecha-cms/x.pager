@@ -1,9 +1,9 @@
 <nav class="pager pager-title">
   <span>
-  <?php if ($_previous = $pager->previous): ?>
-  <a href="<?php echo $_previous; ?>" rel="prev"><?php echo $site->is('page') ? Page::open(PAGE . DS . Path::R($_previous, $url, DS) . '.page')->title : $language->previous; ?></a>
+  <?php if ($_prev = $pager->prev): ?>
+  <a href="<?php echo $_prev; ?>" rel="prev"><?php echo $site->is('page') ? Page::open(PAGE . DS . Path::R($_prev, $url, DS) . '.page')->title : $language->prev; ?></a>
   <?php else: ?>
-  <b><?php echo $language->previous; ?></b>
+  <b><?php echo $language->prev; ?></b>
   <?php endif; ?>
   </span> <span>
   <?php if ($site->has('parent')): ?>
