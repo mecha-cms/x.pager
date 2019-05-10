@@ -1,55 +1,61 @@
 /* @pager */
 .pager {
-  display:block;
-  height:calc(var(--h-text, 1.5em) * 1.25);
-  line-height:calc(var(--h-text, 1.5em) * 1.25);
+  display: block;
+  height: 2em;
+  line-height: 2em;
 }
 .pager::after {
-  content:"";
-  display:table;
-  clear:both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 /* @anchor */
 .pager a,
 .pager b,
 .pager span {
-  display:inline-block;
-  vertical-align:baseline;
-  padding:0 calc(var(--h-text, 1.5em) - var(--z, 1em));
-  text-decoration:none;
+  font: inherit;
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 0 .5em;
+  text-decoration: none;
 }
 .pager a,
 .pager a:focus,
 .pager a:hover,
 .pager a:active {
-  background:var(--color-a, #00f);
-  color:var(--color--inverse, #fff);
-  cursor:pointer;
+  background: #00f;
+  color: #fff;
+  cursor: pointer;
 }
 .pager a:focus,
-.pager a:active {background:var(--color-a--inverse, #f00)}
+.pager a:active {
+  background: #f00;
+}
 .pager b {
-  background:var(--color, #000);
-  color:var(--color--inverse, #fff);
-  font-weight:normal;
-  cursor:not-allowed;
+  background: #000;
+  color: #fff;
+  cursor: not-allowed;
 }
 
 /* @section */
 .pager > span {
-  background:none;
-  padding:0;
+  background: none;
+  padding: 0;
 }
 
 /* @separator */
 .pager > span span {
-  background:none;
-  color:inherit;
+  background: none;
+  color: inherit;
 }
 
 /* @arrow */
 .pager-title > span:first-child b::before,
-.pager-title > span:first-child a::before {content:'\00AB\0020'}
+.pager-title > span:first-child a::before {
+  content: '\00AB\0020';
+}
 .pager-title > span:last-child b::after,
-.pager-title > span:last-child a::after {content:'\0020\00BB'}
+.pager-title > span:last-child a::after {
+  content: '\0020\00BB';
+}
