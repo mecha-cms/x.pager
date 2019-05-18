@@ -5,10 +5,11 @@ author: Taufik Nurrohman
 type: Markdown
 version: 1.1.6
 
-dependency:
-  extension:
-  - asset
-  - page
+lot:
+  extend:
+    asset: 1
+    page: 1
+    shield: 1
 ...
 
 To enable the numbered page navigation style, open your `pages.php` file then find the code that looks like one of the examples below:
