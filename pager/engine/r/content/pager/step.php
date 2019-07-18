@@ -1,7 +1,7 @@
 <nav class="pager pager-step">
 <?php
 
-$_state = extension('pager')['step'] ?? [];
+$_state = state('pager')['step'] ?? [];
 $_count = count($pages->lot);
 
 echo call_user_func(function($current, $count, $chunk, $peek, $fn, $first, $prev, $next, $last) {
