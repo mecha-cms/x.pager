@@ -4,7 +4,7 @@
 $_state = state('pager')['step'] ?? [];
 $_count = count($pages->lot);
 
-echo call_user_func(function($current, $count, $chunk, $peek, $fn, $first, $prev, $next, $last) {
+echo (function($current, $count, $chunk, $peek, $fn, $first, $prev, $next, $last) {
     $begin = 1;
     $end = (int) ceil($count / $chunk);
     $out = "";
@@ -65,7 +65,7 @@ echo call_user_func(function($current, $count, $chunk, $peek, $fn, $first, $prev
     return $out;
 }, $url->i ?? 1, $_count, $config->chunk, $_state['peek'], function($i) use($page) {
     return $page->url . ($i > 0 ? '/' . $i : "");
-}, $language->first, !empty($_state['prev']) ? $language->prev : false, !empty($_state['next']) ? $language->next : false, $language->last);
+})($language->first, !empty($_state['prev']) ? $language->prev : false, !empty($_state['next']) ? $language->next : false, $language->last);
 
 ?>
 </nav>
