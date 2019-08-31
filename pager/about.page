@@ -30,5 +30,5 @@ Replace with this:
 
 Type | Description
 ---- | -----------
-`pager` | Numbered page navigation.
+`step` | Numbered page navigation.
 `title` | Add page title to the next and previous link.
