@@ -13,17 +13,17 @@ use:
 To enable the numbered page navigation style, open your `pages.php` file then find code that looks like one of the examples below:
 
 ~~~ .html
-<nav><?php echo $pager; ?></nav>
+<nav><?= $pager; ?></nav>
 ~~~
 
 ~~~ .php
-<?php static::pager(); ?>
+<?= self::pager(); ?>
 ~~~
 
 Replace with this:
 
 ~~~ .php
-<?php static::pager('step'); ?>
+<?= self::pager('step'); ?>
 ~~~
 
 ### Types
