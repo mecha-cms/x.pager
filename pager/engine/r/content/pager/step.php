@@ -63,7 +63,7 @@ echo (function($current, $count, $chunk, $peek, $fn, $first, $prev, $next, $last
         $out .= '</span>';
     }
     return $out;
-}, $url->i ?? 1, $_count, $state->chunk, $_state['peek'], function($i) use($page) {
+}, $url['i'] ?? 1, $_count, $state->chunk, $_state['peek'], function($i) use($page) {
     return $page->url . ($i > 0 ? '/' . $i : "");
 })($language->first, !empty($_state['prev']) ? $language->prev : false, !empty($_state['next']) ? $language->next : false, $language->last);
 
