@@ -1,21 +1,21 @@
 <nav class="pager pager-title">
   <span>
   <?php if ($_prev = $pager->prev): ?>
-  <a href="<?php echo strtr($_prev, ['&' => '&amp;']); ?>" rel="prev"><?php echo $site->is('page') ? (new Page(PAGE . DS . Path::R($_prev, $url, DS) . '.page'))->title : $language->prev; ?></a>
+  <a href="<?= strtr($_prev, ['&' => '&amp;']); ?>" rel="prev"><?= $site->is('page') ? (new Page(PAGE . DS . Path::R($_prev, $url) . '.page'))->title : i('Previous'); ?></a>
   <?php else: ?>
-  <b><?php echo $language->prev; ?></b>
+  <b><?= i('Previous'); ?></b>
   <?php endif; ?>
   </span> <span>
   <?php if ($site->has('parent')): ?>
-  <a href="<?php echo $parent->url . $url->query('&amp;') . $url->hash; ?>"><?php echo $parent->title; ?></a>
+  <a href="<?= $parent->url . $url->query('&amp;') . $url->hash; ?>"><?= $parent->title; ?></a>
   <?php else: ?>
-  <a href="<?php echo $url; ?>"><?php echo $language->home; ?></a>
+  <a href="<?= $url; ?>"><?= i('Home'); ?></a>
   <?php endif; ?>
   </span> <span>
   <?php if ($_next = $pager->next): ?>
-  <a href="<?php echo strtr($_next, ['&' => '&amp;']); ?>" rel="prev"><?php echo $site->is('page') ? (new Page(PAGE . DS . Path::R($_next, $url, DS) . '.page'))->title : $language->next; ?></a>
+  <a href="<?= strtr($_next, ['&' => '&amp;']); ?>" rel="prev"><?= $site->is('page') ? (new Page(PAGE . DS . Path::R($_next, $url) . '.page'))->title : i('Next'); ?></a>
   <?php else: ?>
-  <b><?php echo $language->next; ?></b>
+  <b><?= i('Next'); ?></b>
   <?php endif; ?>
   </span>
 </nav>
