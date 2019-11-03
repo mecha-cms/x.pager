@@ -1,7 +1,7 @@
 <nav class="pager pager-step">
 <?php
 
-$_state = State::get('x.pager.step') ?? [];
+$_state = State::get('x.pager.step', true) ?? [];
 $_count = count($pages->lot);
 
 echo (function($current, $count, $chunk, $peek, $fn, $first, $prev, $next, $last) {
@@ -63,9 +63,9 @@ echo (function($current, $count, $chunk, $peek, $fn, $first, $prev, $next, $last
         $out .= '</span>';
     }
     return $out;
-}, $url['i'] ?? 1, $_count, $state->chunk, $_state['peek'], function($i) use($page) {
+})($url['i'] ?? 1, $_count, $state->chunk, $_state['peek'], function($i) use($page) {
     return $page->url . ($i > 0 ? '/' . $i : "");
-})(i('First'), !empty($_state['prev']) ? i('Previous') : false, !empty($_state['next']) ? i('Next') : false, i('Last'));
+}, i('First'), !empty($_state['prev']) ? i('Previous') : false, !empty($_state['next']) ? i('Next') : false, i('Last'));
 
 ?>
 </nav>
