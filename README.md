@@ -4,7 +4,7 @@ Page Navigation Extension for Mecha
 Release Notes
 -------------
 
-### 1.9.4
+### 1.2.2
 
  - Bug fixes with other extensions.
 
