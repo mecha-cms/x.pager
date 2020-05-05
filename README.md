@@ -4,9 +4,13 @@ Page Navigation Extension for Mecha
 Release Notes
 -------------
 
+### 1.2.3
+
+ - Fixed a bug for pagination URL in home page.
+
 ### 1.2.2
 
- - Bug fixes with other extensions.
+ - Fixed bugs with other extensions.
 
 ### 1.2.1
 
