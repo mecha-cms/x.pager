@@ -4,7 +4,7 @@ Page Navigation Extension for Mecha
 Release Notes
 -------------
 
-### master
+### 1.3.0
 
  - Added `PagerSteps\Pages` and `PagerTitle\Page` class to make reusable custom pagination.
  - Changed `self::pager('step')` to `self::pager('steps')`.
