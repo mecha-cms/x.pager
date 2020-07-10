@@ -8,7 +8,7 @@ class Pages extends \Pager\Pages {
 
     public function __construct(array $data = [], $chunk = [5, 0], string $parent = null) {
         parent::__construct($data, $chunk, $parent);
-        $top = \is_file($parent) ? parent::page($parent)->url : null;
+        $top = \is_file($parent) ? parent::page($parent)->url : $parent;
         $peek = 2;
         $count = \count($data);
         $current = ($chunk[1] ?? 0) + 1;
