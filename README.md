@@ -8,7 +8,7 @@ Release Notes
 
  - Added `PagerSteps\Pages` and `PagerTitle\Page` class to make reusable custom pagination.
  - Changed `self::pager('step')` to `self::pager('steps')`.
- - **TODO:** Fix pagination bug in the tags page.
+ - Fixed pagination bug in the tags page (#2)
 
 ### 1.2.3
 
