@@ -1,4 +1,4 @@
-<?php $pager = new PagerTitle\Page($pages->lot, $page->path, $parent->path ?? $page->path); ?>
+<?php $pager = new PagerTitle\Page($pages->lot, $page->path, $parent->exist ? $parent : $page); ?>
 <nav class="pager pager-title">
   <?php if ($pager->prev): ?>
   <span>

@@ -6,9 +6,9 @@ class Pages extends \Pager\Pages {
 
     public $steps;
 
-    public function __construct(array $data = [], $chunk = [5, 0], string $parent = null) {
+    public function __construct(array $data = [], $chunk = [5, 0], $parent = null) {
         parent::__construct($data, $chunk, $parent);
-        $top = \is_file($parent) ? parent::page($parent)->url : $parent;
+        $top = $this->parent->link ?? $this->parent->url ?? null;
         $peek = 2;
         $count = \count($data);
         $current = ($chunk[1] ?? 0) + 1;
