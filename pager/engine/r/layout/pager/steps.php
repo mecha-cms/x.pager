@@ -10,11 +10,9 @@ $pager = new PagerSteps\Pages($pages->lot, [$page->chunk ?? 5, ($url['i'] ?? 1) 
 <nav class="pager pager-steps">
   <span>
     <?= $pager->prev(i('Previous')); ?>
-  </span>
-  <span>
+  </span> <span>
     <?= $pager->steps(""); ?>
-  </span>
-  <span>
+  </span> <span>
     <?= $pager->next(i('Next')); ?>
   </span>
 </nav>

@@ -50,6 +50,20 @@ class Pages extends \Pager\Pages {
         }
     }
 
+    public function next(string $text = null) {
+        return \strtr(parent::next($text), [
+            '<span>' => '<b>',
+            '</span>' => '</b>'
+        ]);
+    }
+
+    public function prev(string $text = null) {
+        return \strtr(parent::prev($text), [
+            '<span>' => '<b>',
+            '</span>' => '</b>'
+        ]);
+    }
+
     public function steps(string $text = null) {
         if (null === $text) {
             return $this->steps;
