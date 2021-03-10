@@ -4,6 +4,10 @@ Page Navigation Extension for Mecha
 Release Notes
 -------------
 
+### main
+
+ - [x] [@mecha-cms/mecha#96](https://github.com/mecha-cms/mecha/issues/96)
+
 ### 1.3.0
 
  - Added `PagerSteps\Pages` and `PagerTitle\Page` class to make reusable custom pagination.
