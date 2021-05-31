@@ -12,8 +12,10 @@ use:
 
 To enable the numbered page navigation style, open your `pages.php` file then find code that looks like one of the examples below:
 
-~~~ .html
-<nav><?= $pager; ?></nav>
+~~~ .php
+<nav>
+  <?= $pager; ?>
+</nav>
 ~~~
 
 ~~~ .php

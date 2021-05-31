@@ -1,6 +1,6 @@
 <?php
 
-$p = $site->is('tags') ? (object) [
+$p = $site->is('archives') || $site->is('tags') ? (object) [
     'link' => $url . $url->path
 ] : $page;
 
