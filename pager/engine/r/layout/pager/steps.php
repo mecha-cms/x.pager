@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 $p = $site->is('archives') || $site->is('tags') ? (object) [
-=======
-$p = $site->is('archives') || $site->is('tags')  ? (object) [
->>>>>>> 8afc13a0ecdfbcd9b15c0c5afa8d0699f41a40fa
     'link' => $url . $url->path
 ] : $page;
 
