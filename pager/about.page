@@ -10,6 +10,8 @@ use:
   '.\lot\x\page': 1
 ...
 
+![Pager](https://user-images.githubusercontent.com/1669261/127966544-5af2153e-375b-4d00-80e8-eabf824d8291.png)
+
 To enable the numbered page navigation style, open your `pages.php` file then find code that looks like one of the examples below:
 
 ~~~ .php
