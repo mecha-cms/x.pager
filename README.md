@@ -7,6 +7,7 @@ Release Notes
 ### 1.3.1
 
  - Added support for the [archive](https://github.com/mecha-cms/x.archive) extension.
+ - Updated the CSS to use the `flex` display instead of `inline-block`.
  - [@mecha-cms/mecha#96](https://github.com/mecha-cms/mecha/issues/96)
 
 ### 1.3.0
