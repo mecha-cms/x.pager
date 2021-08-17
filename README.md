@@ -3,6 +3,8 @@ Page Navigation Extension for [Mecha](https://github.com/mecha-cms/mecha)
 
 ![Pager](https://user-images.githubusercontent.com/1669261/127966544-5af2153e-375b-4d00-80e8-eabf824d8291.png)
 
+---
+
 Release Notes
 -------------
 
