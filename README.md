@@ -1,6 +1,8 @@
 Page Navigation Extension for [Mecha](https://github.com/mecha-cms/mecha)
 =========================================================================
 
+![Code Size](https://img.shields.io/github/languages/code-size/mecha-cms/x.pager?color=%23444&style=for-the-badge)
+
 ![Pager](https://user-images.githubusercontent.com/1669261/127966544-5af2153e-375b-4d00-80e8-eabf824d8291.png)
 
 ---
