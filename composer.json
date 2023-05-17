@@ -1,0 +1,8 @@
+{
+  "description": "Custom page navigation.",
+  "license": "GPL-3.0-or-later",
+  "name": "mecha-cms/x.pager",
+  "require": {
+    "mecha-cms/x.page": "^3.0.0"
+  }
+}

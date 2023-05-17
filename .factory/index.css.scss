@@ -1,0 +1,24 @@
+.pager {
+  // TODO
+  &-page {
+    display: flex;
+    gap: 0.5em;
+    justify-content: space-between;
+  }
+  &-part {
+    > span {
+      display: flex;
+      gap: 0.5em;
+    }
+    display: flex;
+    gap: 0.5em;
+    justify-content: space-between;
+    a {
+      &[aria-current='page'] {
+        color: inherit;
+        cursor: default;
+        text-decoration: none;
+      }
+    }
+  }
+}

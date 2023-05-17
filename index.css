@@ -1,0 +1,19 @@
+.pager-page {
+  display: flex;
+  gap: 0.5em;
+  justify-content: space-between;
+}
+.pager-part {
+  display: flex;
+  gap: 0.5em;
+  justify-content: space-between;
+}
+.pager-part > span {
+  display: flex;
+  gap: 0.5em;
+}
+.pager-part a[aria-current=page] {
+  color: inherit;
+  cursor: default;
+  text-decoration: none;
+}
