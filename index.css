@@ -1,11 +1,11 @@
 .pager-page {
   display: flex;
-  gap: 0.5em;
+  gap: 1em;
   justify-content: space-between;
 }
 .pager-part {
   display: flex;
-  gap: 0.5em;
+  gap: 1em;
   justify-content: space-between;
 }
 .pager-part > span {

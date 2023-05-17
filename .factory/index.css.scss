@@ -2,7 +2,7 @@
   // TODO
   &-page {
     display: flex;
-    gap: 0.5em;
+    gap: 1em;
     justify-content: space-between;
   }
   &-part {
@@ -11,7 +11,7 @@
       gap: 0.5em;
     }
     display: flex;
-    gap: 0.5em;
+    gap: 1em;
     justify-content: space-between;
     a {
       &[aria-current='page'] {

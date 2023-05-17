@@ -2,7 +2,7 @@
 
 $chunk = $chunk ?? $pager->chunk ?? 5;
 $count = $count ?? ($pager->parent ? ($pager->parent->count ?? 0) : 0);
-$current = $current ?? ($pager->current ? ($pager->current->part ?? 1) : 1);
+$part = $part ?? ($pager->current ? ($pager->current->part ?? 1) : 1);
 
 $next = $next ?? true; // Show “next” link?
 $prev = $prev ?? $previous ?? true; // Show “previous” link?
@@ -14,7 +14,8 @@ $start = 1;
 $out = [
     'chunk' => $chunk,
     'count' => $count,
-    'current' => $current,
+    'of' => $end,
+    'part' => $part,
     'peek' => $peek,
     'type' => basename(__FILE__, '.php')
 ];
@@ -26,21 +27,21 @@ if ($end > 0) {
         'aria-label' => i('Page Navigation'),
         'class' => 'pager pager-part'
     ], (array) ($out[2] ?? []));
-    if ($current <= $peek + $peek) {
+    if ($part <= $peek + $peek) {
         $min = $start;
         $max = min($start + $peek + $peek, $end);
-    } else if ($current > $end - $peek - $peek) {
+    } else if ($part > $end - $peek - $peek) {
         $min = $end - $peek - $peek;
         $max = $end;
     } else {
-        $min = $current - $peek;
-        $max = $current + $peek;
+        $min = $part - $peek;
+        $max = $part + $peek;
     }
     $out[1]['prev'] = $prev ? ['span', [
         'link' => ['a', is_string($prev) ? $prev : i('Previous'), [
-            'aria-current' => $current !== $start ? null : 'page',
-            'href' => $current !== $start ? $pager->to($current - 1) : null,
-            'rel' => $current !== $start ? 'prev' : null,
+            'aria-current' => $part !== $start ? null : 'page',
+            'href' => $part !== $start ? $pager->to($part - 1) : null,
+            'rel' => $part !== $start ? 'prev' : null,
             'title' => i('Go to the %s page.', 'previous')
         ]]
     ], []] : null;
@@ -57,9 +58,9 @@ if ($end > 0) {
     }
     for ($i = $min; $i <= $max; ++$i) {
         $out[1]['data'][1][] = ['a', (string) $i, [
-            'aria-current' => $current !== $i ? null : 'page',
-            'href' => $current !== $i ? $pager->to($i) : null,
-            'rel' => $current !== $i ? ($current >= $i ? 'prev' : 'next') : null,
+            'aria-current' => $part !== $i ? null : 'page',
+            'href' => $part !== $i ? $pager->to($i) : null,
+            'rel' => $part !== $i ? ($part >= $i ? 'prev' : 'next') : null,
             'title' => i('Go to page %d.', $i)
         ]];
     }
@@ -75,9 +76,9 @@ if ($end > 0) {
     }
     $out[1]['next'] = $next ? ['span', [
         'link' => ['a', i('Next'), [
-            'aria-current' => $current !== $end ? null : 'page',
-            'href' => $current !== $end ? $pager->to($current + 1) : null,
-            'rel' => $current !== $end ? 'next' : null,
+            'aria-current' => $part !== $end ? null : 'page',
+            'href' => $part !== $end ? $pager->to($part + 1) : null,
+            'rel' => $part !== $end ? 'next' : null,
             'title' => i('Go to the %s page.', 'next')
         ]]
     ], []] : null;

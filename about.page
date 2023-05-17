@@ -39,41 +39,69 @@ Numbered page navigation style.
     '2' => [],
     'chunk' => $pager->chunk,
     'count' => $pager->parent->count,
-    'current' => $pager->current->part,
     'next' => true,
+    'part' => $pager->current->part,
     'peek' => 2,
     'prev' => true,
     'previous' => true // Alias of `prev`
 ]);
 ~~~
 
-Key | Description
---- | -----------
-`0` | Set this value to a tag name string to wrap the page navigation layout with a HTML element. For example, if you set this value to `'div'`, then the output will automatically be wrapped in a `'<div class="pager pager-part"> … </div>'` element.
-`1` | Reserved.
-`2` | Use this option to add more HTML attributes to the page navigation layout wrapper. Will work only if the `0` option is set to a value other than `false` and `null`.
-`chunk` | By default it will use the `chunk` value of the current page. Specify the value manually if you are using external navigation data.
-`count` | By default it will use the `count` value of the current pages. Specify the value manually if you are using external navigation data.
-`current` | By default it will use the `part` value of the current pager. Specify the value manually if you are using external navigation data.
-`next` | Set this value to `false` to remove the “Next” link.
-`peek` | Specify how many numeric links need to be displayed before and after the currently active numeric link.
-`prev` | Set this value to `false` to remove the “Previous” link.
-`previous` | This option is an alias of the `prev` option.
+Key | Accept | Description
+--- | ------ | -----------
+`0` | `false|null|string` | Set this value to a tag name string to wrap the page navigation layout with a HTML element. For example, if you set this value to `'div'`, then the output will automatically be wrapped in a `'<div class="pager pager-part"> … </div>'` element.
+`1` | `array|null` | _Reserved._
+`2` | `array` | Use this key to add more HTML attributes to the page navigation layout wrapper. Will work only if the `0` key is set to a value other than `false` and `null`.
+`chunk` | `int` | By default it will use the `chunk` value of the current page. Specify the value manually if you are using external navigation data.
+`count` | `int` | By default it will use the `count` value of the current pages. Specify the value manually if you are using external navigation data.
+`next` | `bool|string` | Set this value to `false` to remove the “Next” link. If the value is a string, it will be used to change the “Next” link label.
+`part` | `int` | By default it will use the `part` value of the current pager. Specify the value manually if you are using external navigation data.
+`peek` | `int` | Specify how many numeric links need to be displayed before and after the currently active numeric link.
+`prev` | `bool|string` | Set this value to `false` to remove the “Previous” link. If the value is a string, it will be used to change the “Previous” link label.
+`previous` | `bool|string` | This key is an alias of the `prev` key.
 
 The following is an example of using the page navigation layout with external data, probably coming from a database:
 
 ~~~ .php
 <?php
 
-$count = $base->one('SELECT count("id") AS "count" FROM "page" WHERE "parent" = ?', [$page->id])['count'] ?? 0;
 $chunk = 100;
-$current = $site->part;
+$count = $base->one('SELECT count("id") AS "count" FROM "page" WHERE "parent" = ?', [$page->id])['count'] ?? 0;
+$part = $site->part ?? 1;
 
 echo self::pager('part', [
     'chunk' => $chunk,
     'count' => $count,
-    'current' => $current
+    'part' => $part
 ]);
 
 ?>
+~~~
+
+### Hooks
+
+There is a layout hook that you can use to modify the page navigation layout output through the tokenization level if
+the available options are not sufficient to meet your customization needs:
+
+~~~ .php
+Hook::set('y.pager', function ($y) {
+    // Specific hook for the `page` pager type
+    if ('page' === $y['type']) {
+        return $y;
+    }
+    // Specific hook for the `part` pager type
+    if ('part' === $y['type']) {
+        $y[1]['description'] = [
+            0 => 'span',
+            1 => i('Page %d of %d', [$y['part'] ?? 1, $y['of'] ?? 1]),
+            2 => [
+                'id' => $id = 'description:' . substr(uniqid(), 6),
+                'style' => 'margin-inline-start: auto;'
+            ]
+        ];
+        $y[2]['aria-describedby'] = $id;
+        return $y;
+    }
+    return $y;
+});
 ~~~

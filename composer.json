@@ -3,6 +3,7 @@
   "license": "GPL-3.0-or-later",
   "name": "mecha-cms/x.pager",
   "require": {
+    "mecha-cms/x.layout": "^2.0.0",
     "mecha-cms/x.page": "^3.0.0"
   }
 }
