@@ -49,7 +49,7 @@ Numbered page navigation style.
 
 Key | Accept | Description
 --- | ------ | -----------
-`0` | `false|null|string` | Set this value to a tag name string to wrap the page navigation layout with a HTML element. For example, if you set this value to `'div'`, then the output will automatically be wrapped in a `'<div class="pager pager-part"> … </div>'` element.
+`0` | `false|null|string` | Set this value to a HTML element name to wrap the page navigation layout with a HTML element. For example, if you set this value to `'div'`, then the output will automatically be wrapped in a `'<div class="pager pager-part"> … </div>'` element.
 `1` | `array|null` | _Reserved._
 `2` | `array` | Use this key to add more HTML attributes to the page navigation layout wrapper. Will work only if the `0` key is set to a value other than `false` and `null`.
 `chunk` | `int` | By default it will use the `chunk` value of the current page. Specify the value manually if you are using external navigation data.
