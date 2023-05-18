@@ -3,6 +3,11 @@
   gap: 1em;
   justify-content: space-between;
 }
+.pager-page a[aria-disabled=true] {
+  color: inherit;
+  cursor: default;
+  text-decoration: none;
+}
 .pager-peek {
   display: flex;
   gap: 1em;

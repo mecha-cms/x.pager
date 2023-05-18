@@ -32,7 +32,8 @@ function route($content) {
     if (!$path = $page->path) {
         return $content;
     }
-    $pager = \Pager\Page::from(\dirname($path))->sort($page->parent->sort ?? [1, 'path']);
+    $pages = \Pages::from(\dirname($path));
+    $pager = \Pager\Page::from($pages->sort($page->parent->sort ?? [1, 'path']));
     // Get current page index from the current page path
     $part = \array_search($page->path, $pager->value);
     if (false === $part) {
@@ -40,7 +41,7 @@ function route($content) {
     }
     // Calling the `chunk` method with values greater than `1` is useless for the `page` page type. This is because
     // navigation is always one step forward and/or one step back.
-    $GLOBALS['pager'] = $pager->chunk(1, $part);
+    $GLOBALS['pager'] = $pager = $pager->chunk(1, $part);
     return $content;
 }
 

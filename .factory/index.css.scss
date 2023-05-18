@@ -4,6 +4,13 @@
     display: flex;
     gap: 1em;
     justify-content: space-between;
+    a {
+      &[aria-disabled='true'] {
+        color: inherit;
+        cursor: default;
+        text-decoration: none;
+      }
+    }
   }
   &-peek {
     > span {

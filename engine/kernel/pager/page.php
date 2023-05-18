@@ -56,15 +56,15 @@ class Page extends \Pager {
         }
         $lot = $this->lot;
         $part = $this->part;
-        if (!isset($lot[$part + 2])) {
+        if (!isset($lot[$part + 1])) {
             return null;
         }
         if ($take) {
             // TODO
         }
-        return $this->page($lot[$part + 2], [
+        return $this->page($lot[$part + 1], [
             'current' => false,
-            'part' => $part + 2
+            'part' => $part + 1
         ]);
     }
 
