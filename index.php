@@ -10,7 +10,7 @@ if (\class_exists("\\Layout")) {
         \Layout::set('pager', __DIR__ . \D . 'engine' . \D . 'y' . \D . 'pager.php');
     }
     \Layout::set('pager/page', __DIR__ . \D . 'engine' . \D . 'y' . \D . 'pager' . \D . 'page.php');
-    \Layout::set('pager/part', __DIR__ . \D . 'engine' . \D . 'y' . \D . 'pager' . \D . 'part.php');
+    \Layout::set('pager/peek', __DIR__ . \D . 'engine' . \D . 'y' . \D . 'pager' . \D . 'peek.php');
 }
 
 // Enable pager in `page` page type
