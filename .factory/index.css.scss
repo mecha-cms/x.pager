@@ -5,7 +5,7 @@
     gap: 1em;
     justify-content: space-between;
   }
-  &-part {
+  &-peek {
     > span {
       display: flex;
       gap: 0.5em;
@@ -14,7 +14,8 @@
     gap: 1em;
     justify-content: space-between;
     a {
-      &[aria-current='page'] {
+      &[aria-current='page'],
+      &[aria-disabled='true'] {
         color: inherit;
         cursor: default;
         text-decoration: none;

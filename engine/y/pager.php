@@ -1,19 +1,33 @@
-<?php if ($prev = $pager->prev): ?>
-  <a href="<?= eat($prev->link); ?>" rel="prev" title="<?= eat($prev->description); ?>">
-    <?= $prev->title; ?>
-  </a>
-<?php else: ?>
-  <a aria-disabled="true" rel="prev">
-    <?= $prev->title; ?>
-  </a>
-<?php endif; ?>
+<?php
 
-<?php if ($next = $pager->next): ?>
-  <a href="<?= eat($next->link); ?>" rel="next" title="<?= eat($next->description); ?>">
-    <?= $next->title; ?>
-  </a>
-<?php else: ?>
-  <a aria-disabled="true" rel="next">
-    <?= $next->title; ?>
-  </a>
-<?php endif; ?>
+$out = [
+    '0' => $lot[0] ?? 'nav',
+    '1' => (array) ($lot[1] ?? []),
+    '2' => array_replace_recursive([
+        'aria-label' => $label ?? i('Page Navigation'),
+        'class' => 'pager'
+    ], (array) ($lot[2] ?? []))
+];
+
+$next = $pager->next;
+$prev = $pager->prev;
+
+if (array_key_exists('previous', $lot) && !array_key_exists('prev', $lot)) {
+    $lot['prev'] = $lot['previous'];
+}
+
+$out[1]['prev'] = !array_key_exists('prev', $lot) || $lot['prev'] ? ['a', isset($lot['prev']) && is_string($lot['prev']) ? $lot['prev'] : ($prev->title ?? i('Previous')), [
+    'aria-disabled' => $prev ? null : 'true',
+    'href' => $prev ? ($prev->url ?? $prev->link ?? null) : null,
+    'rel' => $prev ? 'prev' : null,
+    'title' => $prev ? $prev->description : null
+], []];
+
+$out[1]['next'] = !array_key_exists('next', $lot) || $lot['next'] ? ['a', isset($lot['next']) && is_string($lot['next']) ? $lot['next'] : ($next->title ?? i('Next')), [
+    'aria-disabled' => $next ? null : 'true',
+    'href' => $next ? ($next->url ?? $next->link ?? null) : null,
+    'rel' => $next ? 'next' : null,
+    'title' => $next ? $next->description : null
+], []];
+
+echo new HTML(Hook::fire('y.pager', [$out], $pager), true);

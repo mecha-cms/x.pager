@@ -1,1 +1,1 @@
-.pager-page,.pager-part{display:flex;gap:1em;justify-content:space-between}.pager-part>span{display:flex;gap:.5em}.pager-part a[aria-current=page]{color:inherit;cursor:default;text-decoration:none}
+.pager-page,.pager-peek{display:flex;gap:1em;justify-content:space-between}.pager-peek>span{display:flex;gap:.5em}.pager-peek a[aria-current=page],.pager-peek a[aria-disabled=true]{color:inherit;cursor:default;text-decoration:none}

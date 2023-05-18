@@ -19,21 +19,41 @@ currently active layout:
 Replace that line with this code:
 
 ~~~ .php
-<?= self::pager('part'); ?>
+<?= self::pager('peek'); ?>
 ~~~
 
 ### Types
 
 #### Page
 
-_TODO_
+Page navigation for single page view.
 
-#### Part
+~~~ .php
+<?= self::pager('page', [
+    '0' => 'nav',
+    '1' => null,
+    '2' => [],
+    'next' => true,
+    'prev' => true,
+    'previous' => true // Alias of `prev`
+]);
+~~~
+
+Key | Accept | Description
+--- | ------ | -----------
+`0` | `false|null|string` | Set this value to a HTML element name to wrap the page navigation layout with a HTML element. For example, if you set this value to `'div'`, then the output will automatically be wrapped in a `'<div class="pager pager-page"> … </div>'` element.
+`1` | `array|null` | _Reserved._
+`2` | `array` | Use this key to add more HTML attributes to the page navigation layout wrapper. Will work only if the `0` key is set to a value other than `false` and `null`.
+`next` | `bool|string` | Set this value to `false` to remove the “Next” link. If the value is a string, it will be used to change the “Next” link label.
+`prev` | `bool|string` | Set this value to `false` to remove the “Previous” link. If the value is a string, it will be used to change the “Previous” link label.
+`previous` | `bool|string` | This key is an alias of the `prev` key.
+
+#### Peek
 
 Numbered page navigation style.
 
 ~~~ .php
-<?= self::pager('part', [
+<?= self::pager('peek', [
     '0' => 'nav',
     '1' => null,
     '2' => [],
@@ -49,7 +69,7 @@ Numbered page navigation style.
 
 Key | Accept | Description
 --- | ------ | -----------
-`0` | `false|null|string` | Set this value to a HTML element name to wrap the page navigation layout with a HTML element. For example, if you set this value to `'div'`, then the output will automatically be wrapped in a `'<div class="pager pager-part"> … </div>'` element.
+`0` | `false|null|string` | Set this value to a HTML element name to wrap the page navigation layout with a HTML element. For example, if you set this value to `'div'`, then the output will automatically be wrapped in a `'<div class="pager pager-peek"> … </div>'` element.
 `1` | `array|null` | _Reserved._
 `2` | `array` | Use this key to add more HTML attributes to the page navigation layout wrapper. Will work only if the `0` key is set to a value other than `false` and `null`.
 `chunk` | `int` | By default it will use the `chunk` value of the current page. Specify the value manually if you are using external navigation data.
@@ -69,7 +89,7 @@ $chunk = 100;
 $count = $base->one('SELECT count("id") AS "count" FROM "page" WHERE "parent" = ?', [$page->id])['count'] ?? 0;
 $part = $site->part ?? 1;
 
-echo self::pager('part', [
+echo self::pager('peek', [
     'chunk' => $chunk,
     'count' => $count,
     'part' => $part
@@ -80,28 +100,23 @@ echo self::pager('part', [
 
 ### Hooks
 
-There is a layout hook that you can use to modify the page navigation layout output through the tokenization level if
+There are several layout hooks that you can use to modify the page navigation output through the tokenization level if
 the available options are not sufficient to meet your customization needs:
 
 ~~~ .php
-Hook::set('y.pager', function ($y) {
-    // Specific hook for the `page` pager type
-    if ('page' === $y['type']) {
-        return $y;
-    }
-    // Specific hook for the `part` pager type
-    if ('part' === $y['type']) {
-        $y[1]['description'] = [
-            0 => 'span',
-            1 => i('Page %d of %d', [$y['part'] ?? 1, $y['of'] ?? 1]),
-            2 => [
-                'id' => $id = 'description:' . substr(uniqid(), 6),
-                'style' => 'margin-inline-start: auto;'
-            ]
-        ];
-        $y[2]['aria-describedby'] = $id;
-        return $y;
-    }
+// Specific hook for the `page` pager type
+Hook::set('y.pager.page', function ($y) {
+    return $y;
+});
+
+// Specific hook for the `peek` pager type
+Hook::set('y.pager.peek', function ($y) {
+    $y[1]['description'] = [
+        0 => 'span',
+        1 => $description = i('Page %d of %d', [$y['part'] ?? 1, $y['of'] ?? 1]),
+        2 => ['style' => 'margin-inline-start: auto;']
+    ];
+    $y[2]['aria-description'] = $description;
     return $y;
 });
 ~~~
