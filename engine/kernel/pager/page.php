@@ -16,7 +16,7 @@ class Page extends \Pager {
             return null;
         }
         if ($take) {
-            // TODO
+            unset($this->lot[$part]);
         }
         return $this->page($lot[$part], [
             'current' => true,
@@ -28,11 +28,16 @@ class Page extends \Pager {
         if (1 !== $this->chunk) {
             return parent::first($take);
         }
-        if ($take) {
-            // TODO
+        $lot = $this->lot;
+        $part = ($first = 1) - 1;
+        if (!isset($lot[$part])) {
+            return null;
         }
-        return $this->page(end($this->value), [
-            'current' => ($first = 1) === $this->part + 1,
+        if ($take) {
+            unset($this->lot[$part]);
+        }
+        return $this->page($lot[$part], [
+            'current' => $first === $part + 1,
             'part' => $first
         ]);
     }
@@ -41,11 +46,16 @@ class Page extends \Pager {
         if (1 !== $this->chunk) {
             return parent::last($take);
         }
-        if ($take) {
-            // TODO
+        $lot = $this->lot;
+        $part = ($last = count($lot)) - 1;
+        if (!isset($lot[$part])) {
+            return null;
         }
-        return $this->page(end($this->value), [
-            'current' => ($last = count($this->lot)) === $this->part + 1,
+        if ($take) {
+            unset($this->lot[$part]);
+        }
+        return $this->page($lot[$part], [
+            'current' => $last === $part + 1,
             'part' => $last
         ]);
     }
@@ -60,7 +70,7 @@ class Page extends \Pager {
             return null;
         }
         if ($take) {
-            // TODO
+            unset($this->lot[$part + 1]);
         }
         return $this->page($lot[$part + 1], [
             'current' => false,
@@ -78,7 +88,7 @@ class Page extends \Pager {
             return null;
         }
         if ($take) {
-            // TODO
+            unset($this->lot[$part - 1]);
         }
         return $this->page($lot[$part - 1], [
             'current' => false,
