@@ -14,7 +14,7 @@ if (\class_exists("\\Layout")) {
 }
 
 // Enable pager in `page` page type
-function route($content) {
+function route__page($content) {
     \extract($GLOBALS, \EXTR_SKIP);
     // Make sure current page type is `page`
     if (!$state->is('page')) {
@@ -45,4 +45,4 @@ function route($content) {
     return $content;
 }
 
-\Hook::set('route.page', __NAMESPACE__ . "\\route", 100.1);
+\Hook::set('route.page', __NAMESPACE__ . "\\route__page", 100.1);
