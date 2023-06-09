@@ -70,7 +70,7 @@ if ($end <= 1) {
             $out[1]['data'][1]['>'] = ['span', '&#x2026;', []];
         }
         $out[1]['data'][1][$end] = ['a', (string) $end, [
-            'href' => $page->to($end),
+            'href' => $pager->to($end),
             'rel' => 'next',
             'title' => i('Go to the %s page.', 'last')
         ]];
