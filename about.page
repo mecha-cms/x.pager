@@ -16,7 +16,7 @@ currently active layout:
 <?= self::pager(); ?>
 ~~~
 
-Replace that line with this code:
+Replace that line with the code below:
 
 ~~~ .php
 <?= self::pager('peek'); ?>
@@ -24,9 +24,11 @@ Replace that line with this code:
 
 ### Types
 
+There are several types of page navigation available in this extension that you can use.
+
 #### Page
 
-Page navigation for single page view.
+A page navigation for single page view.
 
 ~~~ .php
 <?= self::pager('page', [
@@ -43,14 +45,14 @@ Key | Accept | Description
 --- | ------ | -----------
 `0` | `false|null|string` | Set this value to a HTML element name to wrap the page navigation layout with a HTML element. For example, if you set this value to `'div'`, then the output will automatically be wrapped in a `'<div class="pager pager-page"> … </div>'` element.
 `1` | `array|null` | _Reserved._
-`2` | `array` | Use this key to add more HTML attributes to the page navigation layout wrapper. Will work only if the `0` key is set to a value other than `false` and `null`.
-`next` | `bool|string` | Set this value to `false` to remove the “Next” link. If the value is a string, it will be used to change the “Next” link label.
-`prev` | `bool|string` | Set this value to `false` to remove the “Previous” link. If the value is a string, it will be used to change the “Previous” link label.
+`2` | `array` | Use this key to add more HTML attributes to the page navigation layout wrapper. Will only work if the `0` key is set to a value other than `false` and `null`.
+`next` | `bool|string` | Set this value to `false` to remove the “Next” link. If the value is a string, it will be used to change the label of the “Next” link.
+`prev` | `bool|string` | Set this value to `false` to remove the “Previous” link. If the value is a string, it will be used to change the label of the “Previous” link.
 `previous` | `bool|string` | This key is an alias of the `prev` key.
 
 #### Peek
 
-Numbered page navigation style.
+A page navigation for multiple page view with numbered page navigation style.
 
 ~~~ .php
 <?= self::pager('peek', [
@@ -71,22 +73,22 @@ Key | Accept | Description
 --- | ------ | -----------
 `0` | `false|null|string` | Set this value to a HTML element name to wrap the page navigation layout with a HTML element. For example, if you set this value to `'div'`, then the output will automatically be wrapped in a `'<div class="pager pager-peek"> … </div>'` element.
 `1` | `array|null` | _Reserved._
-`2` | `array` | Use this key to add more HTML attributes to the page navigation layout wrapper. Will work only if the `0` key is set to a value other than `false` and `null`.
-`chunk` | `int` | By default it will use the `chunk` value of the current page. Specify the value manually if you are using external navigation data.
-`count` | `int` | By default it will use the `count` value of the current pages. Specify the value manually if you are using external navigation data.
-`next` | `bool|string` | Set this value to `false` to remove the “Next” link. If the value is a string, it will be used to change the “Next” link label.
-`part` | `int` | By default it will use the `part` value of the current pager. Specify the value manually if you are using external navigation data.
+`2` | `array` | Use this key to add more HTML attributes to the page navigation layout wrapper. Will only work if the `0` key is set to a value other than `false` and `null`.
+`chunk` | `int` | By default, the `chunk` value of the current page is used. Specify the value manually if you are using external navigation data.
+`count` | `int` | By default, the `count` value of the current page is used. Specify the value manually if you are using external navigation data.
+`next` | `bool|string` | Set this value to `false` to remove the “Next” link. If the value is a string, it will be used to change the label of the “Next” link.
+`part` | `int` | By default, it uses the `part` value of the current page. Specify the value manually if you are using external navigation data.
 `peek` | `int` | Specify how many numeric links need to be displayed before and after the currently active numeric link.
-`prev` | `bool|string` | Set this value to `false` to remove the “Previous” link. If the value is a string, it will be used to change the “Previous” link label.
+`prev` | `bool|string` | Set this value to `false` to remove the “Previous” link. If the value is a string, it will be used to change the label of the “Previous” link.
 `previous` | `bool|string` | This key is an alias of the `prev` key.
 
-The following is an example of using the page navigation layout with external data, probably coming from a database:
+The following is an example of using the page navigation layout with external data, such as from a database:
 
 ~~~ .php
 <?php
 
 $chunk = 100;
-$count = $base->one('SELECT count("id") AS "count" FROM "page" WHERE "parent" = ?', [$page->id])['count'] ?? 0;
+$count = $base->row('SELECT count("id") AS "count" FROM "page" WHERE "parent" = ?', [$page->id])['count'] ?? 0;
 $part = $site->part ?? 1;
 
 echo self::pager('peek', [
