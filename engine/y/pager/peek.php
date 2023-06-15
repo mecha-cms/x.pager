@@ -42,7 +42,7 @@ if ($end <= 1) {
         'link' => ['a', is_string($prev) ? $prev : i('Previous'), [
             'aria-disabled' => $part !== $start ? null : 'true',
             'href' => $part !== $start ? $pager->to($part - 1) : null,
-            'rel' => $part !== $start ? 'prev' : null,
+            'rel' => 'prev',
             'title' => i('Go to the %s page.', 'previous')
         ]]
     ], []] : null;
@@ -79,7 +79,7 @@ if ($end <= 1) {
         'link' => ['a', i('Next'), [
             'aria-disabled' => $part !== $end ? null : 'true',
             'href' => $part !== $end ? $pager->to($part + 1) : null,
-            'rel' => $part !== $end ? 'next' : null,
+            'rel' => 'next',
             'title' => i('Go to the %s page.', 'next')
         ]]
     ], []] : null;
