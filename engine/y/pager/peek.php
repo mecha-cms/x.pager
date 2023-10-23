@@ -59,7 +59,7 @@ if ($end <= 1) {
     }
     for ($i = $min; $i <= $max; ++$i) {
         $out[1]['data'][1][$i] = ['a', (string) $i, [
-            'aria-current' => $part !== $i ? null : 'page',
+            'aria-current' => $part !== $i ? null : 'step',
             'href' => $part !== $i ? $pager->to($i) : null,
             'rel' => $part !== $i ? ($part >= $i ? 'prev' : 'next') : null,
             'title' => i('Go to page %d.', $i)

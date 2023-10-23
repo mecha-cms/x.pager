@@ -21,7 +21,7 @@
     gap: 1em;
     justify-content: space-between;
     a {
-      &[aria-current='page'],
+      &[aria-current='step'],
       &[aria-disabled='true'] {
         color: inherit;
         cursor: default;

@@ -17,7 +17,7 @@
   display: flex;
   gap: 0.5em;
 }
-.pager-peek a[aria-current=page],
+.pager-peek a[aria-current=step],
 .pager-peek a[aria-disabled=true] {
   color: inherit;
   cursor: default;
