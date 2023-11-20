@@ -43,7 +43,7 @@ if ($end <= 1) {
             'aria-disabled' => $part !== $start ? null : 'true',
             'href' => $part !== $start ? $pager->to($part - 1) : null,
             'rel' => 'prev',
-            'title' => i('Go to the %s page.', 'previous')
+            'title' => i('Go to the %s page', 'previous')
         ]]
     ], []] : null;
     $out[1]['data'] = ['span', [], []];
@@ -51,7 +51,7 @@ if ($end <= 1) {
         $out[1]['data'][1][$start] = ['a', (string) $start, [
             'href' => $pager->to($start),
             'rel' => 'prev',
-            'title' => i('Go to the %s page.', 'first')
+            'title' => i('Go to the %s page', 'first')
         ]];
         if ($min > $start + 1) {
             $out[1]['data'][1]['<'] = ['span', '&#x2026;', []];
@@ -62,7 +62,7 @@ if ($end <= 1) {
             'aria-current' => $part !== $i ? null : 'step',
             'href' => $part !== $i ? $pager->to($i) : null,
             'rel' => $part !== $i ? ($part >= $i ? 'prev' : 'next') : null,
-            'title' => i('Go to page %d.', $i)
+            'title' => i('Go to page %d' . ($part === $i ? ' (you are here)' : ""), $i)
         ]];
     }
     if ($max < $end) {
@@ -72,7 +72,7 @@ if ($end <= 1) {
         $out[1]['data'][1][$end] = ['a', (string) $end, [
             'href' => $pager->to($end),
             'rel' => 'next',
-            'title' => i('Go to the %s page.', 'last')
+            'title' => i('Go to the %s page', 'last')
         ]];
     }
     $out[1]['next'] = $next ? ['span', [
@@ -80,7 +80,7 @@ if ($end <= 1) {
             'aria-disabled' => $part !== $end ? null : 'true',
             'href' => $part !== $end ? $pager->to($part + 1) : null,
             'rel' => 'next',
-            'title' => i('Go to the %s page.', 'next')
+            'title' => i('Go to the %s page', 'next')
         ]]
     ], []] : null;
 }
