@@ -18,7 +18,10 @@ class Page extends \Pager {
         if ($take) {
             unset($this->lot[$part]);
         }
-        return $this->page($lot[$part], [
+        return is_array($lot[$part]) ? $this->page(null, array_replace_recursive([
+            'current' => true,
+            'part' => $part
+        ], $lot[$part])) : $this->page($lot[$part], [
             'current' => true,
             'part' => $part
         ]);
@@ -36,7 +39,10 @@ class Page extends \Pager {
         if ($take) {
             unset($this->lot[$part]);
         }
-        return $this->page($lot[$part], [
+        return is_array($lot[$part]) ? $this->page(null, array_replace_recursive([
+            'current' => $first === $part + 1,
+            'part' => $first
+        ], $lot[$part])) : $this->page($lot[$part], [
             'current' => $first === $part + 1,
             'part' => $first
         ]);
@@ -54,7 +60,10 @@ class Page extends \Pager {
         if ($take) {
             unset($this->lot[$part]);
         }
-        return $this->page($lot[$part], [
+        return is_array($lot[$part]) ? $this->page(null, array_replace_recursive([
+            'current' => $last === $part + 1,
+            'part' => $last
+        ], $lot[$part])) : $this->page($lot[$part], [
             'current' => $last === $part + 1,
             'part' => $last
         ]);
@@ -72,7 +81,10 @@ class Page extends \Pager {
         if ($take) {
             unset($this->lot[$part + 1]);
         }
-        return $this->page($lot[$part + 1], [
+        return is_array($lot[$part + 1]) ? $this->page(null, array_replace_recursive([
+            'current' => false,
+            'part' => $part + 1
+        ], $lot[$part + 1])) : $this->page($lot[$part + 1], [
             'current' => false,
             'part' => $part + 1
         ]);
@@ -90,7 +102,10 @@ class Page extends \Pager {
         if ($take) {
             unset($this->lot[$part - 1]);
         }
-        return $this->page($lot[$part - 1], [
+        return is_array($lot[$part - 1]) ? $this->page(null, array_replace_recursive([
+            'current' => false,
+            'part' => $part
+        ], $lot[$part - 1])) : $this->page($lot[$part - 1], [
             'current' => false,
             'part' => $part
         ]);
@@ -107,7 +122,7 @@ class Page extends \Pager {
         if (!isset($lot[$part - 1])) {
             return null;
         }
-        return $this->page($lot[$part - 1])->URL;
+        return (is_array($lot[$part - 1]) ? $this->page(null, $lot[$part - 1]) : $this->page($lot[$part - 1]))->URL;
     }
 
 }
