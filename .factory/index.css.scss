@@ -1,10 +1,16 @@
 .pager {
-  // TODO
   &-page {
     display: flex;
     gap: 1em;
     justify-content: space-between;
     a {
+      text-align: center;
+      &:first-child {
+        text-align: left;
+      }
+      &:last-child {
+        text-align: right;
+      }
       &[aria-disabled='true'] {
         color: inherit;
         cursor: default;

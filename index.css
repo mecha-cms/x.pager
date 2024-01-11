@@ -3,6 +3,15 @@
   gap: 1em;
   justify-content: space-between;
 }
+.pager-page a {
+  text-align: center;
+}
+.pager-page a:first-child {
+  text-align: left;
+}
+.pager-page a:last-child {
+  text-align: right;
+}
 .pager-page a[aria-disabled=true] {
   color: inherit;
   cursor: default;
