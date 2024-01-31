@@ -8,7 +8,7 @@ $next = $next ?? true; // Show “next” link?
 $prev = $prev ?? $previous ?? true; // Show “previous” link?
 
 $end = (int) ceil($count / $chunk);
-$peek = $peek ?? $lot[0] ?? 2; // `self::pager('part', ['peek' => 2])` or `self::pager('part', [2])`
+$peek = $peek ?? $lot[0] ?? 2; // `self::pager('peek', ['peek' => 2])` or `self::pager('peek', [2])`
 $start = 1;
 
 $out = [
