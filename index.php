@@ -15,7 +15,7 @@ if (\class_exists("\\Layout")) {
 
 // Enable pager in `page` page type
 function route__page($content) {
-    \extract($GLOBALS, \EXTR_SKIP);
+    \extract(\lot(), \EXTR_SKIP);
     // Make sure current page type is `page`
     if (!$state->is('page')) {
         return $content;
@@ -41,7 +41,7 @@ function route__page($content) {
     }
     // Calling the `chunk` method with values greater than `1` is useless for the `page` page type. This is because
     // navigation is always one step forward and/or one step back.
-    $GLOBALS['pager'] = $pager = $pager->chunk(1, $part);
+    \lot('pager', $pager = $pager->chunk(1, $part));
     return $content;
 }
 

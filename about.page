@@ -6,7 +6,7 @@ color: '#0793a0'
 author: Taufik Nurrohman
 image: /lot/x/pager/index.png
 type: Markdown
-version: 2.0.1
+version: 2.0.2
 ...
 
 To enable the numbered page navigation feature, find a line of code that looks like this in the `pages.php` file of your
